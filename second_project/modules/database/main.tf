@@ -1,5 +1,6 @@
 variable "db_password" { type = string }
 variable "subnet_ids"  { type = list(string) }
+variable "db_subnet_group_name" { type = string }
 
 resource "aws_db_instance" "postgres" {
   allocated_storage    = 20
@@ -10,7 +11,9 @@ resource "aws_db_instance" "postgres" {
   password             = var.db_password
   skip_final_snapshot  = true
   publicly_accessible  = false
-  subnet_id     = var.subnet_id
+
+  # Usiamo il gruppo di subnet fornito dal modulo VPC
+  db_subnet_group_name = var.db_subnet_group_name
 
 }
 
