@@ -20,9 +20,10 @@ module "network" {
 
 # 2. Modulo Database
 module "db" {
-  source      = "./modules/database"
-  db_password = var.db_password
-  subnet_ids  = module.network.private_subnets
+  source                = "./modules/database"
+  db_password           = var.db_password
+  subnet_ids            = module.network.private_subnets
+  db_subnet_group_name  = module.network.db_subnet_group_name  # <--- Controlla questa riga
 }
 
 # 3. Modulo Compute
