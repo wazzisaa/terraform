@@ -27,5 +27,3 @@ resource "aws_db_subnet_group" "main" {
 output "public_subnet" { value = aws_subnet.subnet_a.id }
 output "private_subnets" { value = [aws_subnet.subnet_a.id, aws_subnet.subnet_b.id] }
 output "db_subnet_group_name" { value = aws_db_subnet_group.main.name }
-
-}
