@@ -10,6 +10,8 @@ resource "aws_db_instance" "postgres" {
   password             = var.db_password
   skip_final_snapshot  = true
   publicly_accessible  = false
+  subnet_id     = var.subnet_id
+
 }
 
 output "rds_endpoint" {
