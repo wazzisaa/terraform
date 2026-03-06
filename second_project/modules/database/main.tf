@@ -1,6 +1,16 @@
 variable "db_password" { type = string }
 variable "subnet_ids"  { type = list(string) }
 
+resource "aws_db_subnet_group" "postgres_group" {
+  name       = "media-backend-db-group"
+  subnet_ids = var.subnet_ids # Qui colleghiamo le tue subnet reali
+
+  tags = {
+    Name = "Postgres DB Subnet Group"
+  }
+}
+
+
 resource "aws_db_instance" "postgres" {
   allocated_storage    = 20
   engine               = "postgres"
@@ -10,7 +20,7 @@ resource "aws_db_instance" "postgres" {
   password             = var.db_password
   skip_final_snapshot  = true
   publicly_accessible  = false
-  subnet_id     = var.subnet_id
+  db_subnet_group_name = aws_db_subnet_group.postgres_group.name
 
 }
 
