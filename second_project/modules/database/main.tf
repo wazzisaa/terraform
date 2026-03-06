@@ -21,7 +21,7 @@ resource "aws_db_instance" "postgres" {
   skip_final_snapshot  = true
   publicly_accessible  = false
   db_subnet_group_name = aws_db_subnet_group.postgres_group.name
-
+  depends_on = [aws_db_subnet_group.postgres_group]
 }
 
 output "rds_endpoint" {
