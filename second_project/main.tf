@@ -32,3 +32,9 @@ module "web_server" {
   db_endpoint = module.db.rds_endpoint
   subnet_id   = module.network.public_subnet
 }
+
+#4. Modulo bucket S3
+
+module "bucket" {
+    source = "./modules/bucket"
+}
